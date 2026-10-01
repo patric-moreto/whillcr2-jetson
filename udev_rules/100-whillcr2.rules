@@ -1,0 +1,2 @@
+# WHILL CR2 serial port
+ACTION=="add", SUBSYSTEM=="tty", KERNEL=="ttyUSB*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="whill"
