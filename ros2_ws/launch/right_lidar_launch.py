@@ -23,9 +23,9 @@ def generate_launch_description():
                 {'serial_port': '/dev/ttyACM0'},
                 {'baudrate': 4000000},
 
-                {'lidar_port': 6101},
-                {'lidar_ip': '192.168.1.62'},
-                {'local_port': 6201},
+                {'lidar_port': 6102},
+                {'lidar_ip': '192.168.1.63'},
+                {'local_port': 6202},
                 {'local_ip': '192.168.1.2'},
                 
                 {'cloud_frame': "unilidar_right_lidar"},
