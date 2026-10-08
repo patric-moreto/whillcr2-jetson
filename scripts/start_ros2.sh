@@ -23,11 +23,11 @@ run whill "ros2 run whill_driver whill --ros-args -p port_name:=/dev/whill"
 echo "Starting joy node"
 run joy "ros2 run joy joy_node"
 
-#echo "Starting pointclouds fusion"
-#run ? "ros2 ?"
+echo "Starting pointcloud merging"
+run polka "ros2 launch polka polka.launch.py config_file:='${CONFIG_DIR}'/pointcloud_merge_params.yaml"
 
-echo "Starting pointcloud_to_laserscan"
-run laserscan "ros2 launch pointcloud_to_laserscan '${LAUNCH_DIR}'/pointcloud_to_laserscan_launch.py"
+#echo "Starting pointcloud_to_laserscan"
+#run laserscan "ros2 launch pointcloud_to_laserscan '${LAUNCH_DIR}'/pointcloud_to_laserscan_launch.py"
 
 #echo "Starting WHILL CR2 state publisher"
 #run whillcr2_tf "ros2 ??  state_publisher.launch.py"

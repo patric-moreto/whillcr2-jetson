@@ -35,6 +35,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     htop vim tmux x11-apps nvtop sl && \
     rm -rf /var/lib/apt/lists/*
 
+# --- Clone Polka repository
+# --- From https://github.com/Pana1v/polka/tree/humble
+RUN git clone -b humble https://github.com/Pana1v/polka.git
+RUN cd .. && source /opt/ros/$ROS_DISTRO/setup.bash &&  \
+    colcon build --packages-select polka --cmake-args -DWITH_CUDA=ON
+
 # --- Add ROS 2 setup to .bashrc
 RUN echo "# Adding ROS setup" >> /root/.bashrc && \
     echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc && \

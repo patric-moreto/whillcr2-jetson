@@ -1,0 +1,49 @@
+# ============================================================================
+# polka - multi-LiDAR fusion-filter node  (minimal example)
+# ============================================================================
+# Merges multiple LiDAR sources (any mix of PointCloud2 and LaserScan) into a
+# unified PointCloud2 and/or LaserScan.
+#
+# Copy this file and edit for your robot:
+#   1. Set output_frame_id to your robot's base frame
+#   2. List your sensors under source_names and fill in each topic / type
+#   3. Launch:  ros2 launch polka polka.launch.py config_file:=<your>.yaml
+#
+# Each source needs a valid TF from its frame_id -> output_frame_id.
+# Every parameter (per-source/output filters, IMU deskewing, QoS, per-point
+# timestamps, ...) is documented in config/detailed_params.yaml.
+#
+# IMU deskewing uses a single global motion_compensation.imu_topic by default
+# - the recommended setup for rigid platforms. Articulated platforms (hinged
+# vehicles, turrets, arms) can override sources.<name>.imu_topic per source;
+# see config/example_articulated_imu.yaml for a full example.
+# ============================================================================
+
+polka:
+  ros__parameters:
+
+    # Everything not set here keeps its default (config/detailed_params.yaml).
+    output_frame_id: "base_link"     # all points are transformed into this frame
+    enable_gpu: true
+
+    outputs:
+      cloud:
+        enabled: true
+      scan:                          # flattens the merged cloud into a 2D scan
+        enabled: true
+        z_min: -1.00                 # meters - bottom of the horizontal slice
+        z_max:  2.00                 # meters - top of the horizontal slice
+
+    source_names: ["unilidar_left", "unilidar_right"]
+
+    sources:
+
+      # Left LiDAR
+      unilidar_left:
+        topic: "/unilidar_right/cloud"
+        type: "pointcloud2"
+
+      # Right LiDAR
+      unilidar_right:
+        topic: "/unilidar_right/cloud"
+        type: "pointcloud2"
