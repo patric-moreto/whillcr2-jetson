@@ -35,6 +35,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     htop vim tmux x11-apps nvtop sl && \
     rm -rf /var/lib/apt/lists/*
 
+# --- Clone Point-LIO repository
+# --- From https://github.com/dfloreaa/point_lio_ros2
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libeigen3-dev ros-$ROS_DISTRO-pcl-ros \
+    ros-$ROS_DISTRO-pcl-conversions \
+    ros-$ROS_DISTRO-visualization-msgs && \
+    rm -rf /var/lib/apt/lists/*
+RUN git clone https://github.com/dfloreaa/point_lio_ros2.git
+RUN cd .. && source /opt/ros/$ROS_DISTRO/setup.bash &&  \
+    colcon build --symlink-install --packages-up-to point_lio
+
 # --- Add ROS 2 setup to .bashrc
 RUN echo "# Adding ROS setup" >> /root/.bashrc && \
     echo "source /opt/ros/$ROS_DISTRO/setup.bash" >> /root/.bashrc && \

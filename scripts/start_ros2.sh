@@ -11,8 +11,8 @@ LAUNCH_DIR=/root/ros2_ws/launch
 CONFIG_DIR=/root/ros2_ws/config
 
 echo "Starting both Unitree L2 LiDARs"
-run unilidar_left "ros2 launch unitree_lidar_ros2 '${LAUNCH_DIR}'/left_lidar_launch.py"
-run unilidar_right "ros2 launch unitree_lidar_ros2 '${LAUNCH_DIR}'/right_lidar_launch.py"
+run unilidar_left "ros2 launch '${LAUNCH_DIR}'/left_lidar_launch.py"
+run unilidar_right "ros2 launch '${LAUNCH_DIR}'/right_lidar_launch.py"
 
 echo "Starting ZED X Mini"
 run zed "ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zedxm"
@@ -27,13 +27,13 @@ run joy "ros2 run joy joy_node"
 #run ? "ros2 ?"
 
 echo "Starting pointcloud_to_laserscan"
-run laserscan "ros2 launch pointcloud_to_laserscan '${LAUNCH_DIR}'/pointcloud_to_laserscan_launch.py"
+run laserscan "ros2 launch '${LAUNCH_DIR}'/pointcloud_to_laserscan_launch.py"
 
 #echo "Starting WHILL CR2 state publisher"
 #run whillcr2_tf "ros2 ??  state_publisher.launch.py"
 
-#echo "Starting LiDAR odometry"
-#run kiss_icp "ros2 launch kiss_icp odometry.launch.py topic:=/concatenated_cloud"
+echo "Starting LiDAR odometry"
+run point_lio "ros2 launch '${LAUNCH_DIR}'/point_lio_launch.py"
 
 echo "Starting SLAM Toolbox"
 run slam "ros2 launch slam_toolbox online_async_launch.py slam_params_file:='${CONFIG_DIR}'/mapper_params_online_async.yaml"
