@@ -3,4 +3,4 @@
 IMAGE_NAME=patricmoreto/whillcr2-jetson:merge-pointcloud-polka
 PLATFORM=linux/arm64
 
-docker buildx build --platform ${PLATFORM} --tag ${IMAGE_NAME} .
+docker buildx build --platform ${PLATFORM} --tag ${IMAGE_NAME} . $@
