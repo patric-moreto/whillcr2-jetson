@@ -6,7 +6,7 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
     # Run unitree lidar
-    node1 = Node(
+    node = Node(
         package='unitree_lidar_ros2',
         executable='unitree_lidar_ros2_node',
         name='unitree_lidar_ros2_node',
@@ -46,4 +46,4 @@ def generate_launch_description():
     #    arguments=['-d', rviz_config_file],
     #    output='log'
     #)
-    return LaunchDescription([node1, rviz_node])
+    return LaunchDescription([node])
