@@ -3,13 +3,16 @@ from launch.actions import IncludeLaunchDescription, GroupAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.actions import SetParameter
 from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import PathJoinSubstitution
 
 def generate_launch_description():
     original_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-            FindPackageShare('point_lio'),
-            'launch', 'correct_odom_unilidar_l2.launch.py'
-        ])
+            PathJoinSubstitution([
+                FindPackageShare('point_lio'),
+                'launch', 'correct_odom_unilidar_l2.launch.py'
+                ])
+            ])
     )
 
     override_lidar = SetParameter(
