@@ -37,6 +37,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # --- Clone Polka repository
 # --- From https://github.com/Pana1v/polka/tree/humble
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libssl-dev && \
+    rm -rf /var/lib/apt/lists/*
 RUN git clone -b humble https://github.com/Pana1v/polka.git
 RUN cd .. && source /opt/ros/$ROS_DISTRO/setup.bash &&  \
     colcon build --packages-select polka --cmake-args -DWITH_CUDA=ON
