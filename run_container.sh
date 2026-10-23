@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE_NAME=patricmoreto/whillcr2-jetson:latest
+IMAGE_NAME=patricmoreto/whillcr2-jetson:lidar-odometry-point-lio
 CONTAINER_NAME=whillchair_jetson
 BASH_DIR=$(dirname "$(realpath $0)")
 
