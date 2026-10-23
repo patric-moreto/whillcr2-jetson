@@ -40,7 +40,7 @@ polka:
 
       # Left LiDAR
       unilidar_left:
-        topic: "/unilidar_right/cloud"
+        topic: "/unilidar_left/cloud"
         type: "pointcloud2"
 
       # Right LiDAR

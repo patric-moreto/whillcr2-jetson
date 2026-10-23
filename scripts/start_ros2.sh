@@ -11,8 +11,8 @@ LAUNCH_DIR=/root/ros2_ws/launch
 CONFIG_DIR=/root/ros2_ws/config
 
 echo "Starting both Unitree L2 LiDARs"
-run unilidar_left "ros2 launch unitree_lidar_ros2 '${LAUNCH_DIR}'/left_lidar_launch.py"
-run unilidar_right "ros2 launch unitree_lidar_ros2 '${LAUNCH_DIR}'/right_lidar_launch.py"
+run unilidar_left "ros2 launch '${LAUNCH_DIR}'/left_lidar_launch.py"
+run unilidar_right "ros2 launch '${LAUNCH_DIR}'/right_lidar_launch.py"
 
 echo "Starting ZED X Mini"
 run zed "ros2 launch zed_wrapper zed_camera.launch.py camera_model:=zedxm"
@@ -27,7 +27,7 @@ echo "Starting pointcloud merging"
 run polka "ros2 launch polka polka.launch.py config_file:='${CONFIG_DIR}'/pointcloud_merge_params.yaml"
 
 #echo "Starting pointcloud_to_laserscan"
-#run laserscan "ros2 launch pointcloud_to_laserscan '${LAUNCH_DIR}'/pointcloud_to_laserscan_launch.py"
+#run laserscan "ros2 launch '${LAUNCH_DIR}'/pointcloud_to_laserscan_launch.py"
 
 #echo "Starting WHILL CR2 state publisher"
 #run whillcr2_tf "ros2 ??  state_publisher.launch.py"
